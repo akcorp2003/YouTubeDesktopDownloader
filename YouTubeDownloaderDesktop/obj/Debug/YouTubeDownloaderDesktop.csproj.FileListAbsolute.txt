@@ -1,0 +1,29 @@
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\bin\Debug\YouTubeDownloaderDesktop.exe.config
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\bin\Debug\YouTubeDownloaderDesktop.exe
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\bin\Debug\YouTubeDownloaderDesktop.pdb
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.csprojResolveAssemblyReference.cache
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\obj\Debug\MainWindow.g.cs
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\obj\Debug\App.g.cs
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop_MarkupCompile.cache
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop_MarkupCompile.lref
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\obj\Debug\MainWindow.baml
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.g.resources
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.Properties.Resources.resources
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.csproj.GenerateResource.Cache
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.exe
+C:\Users\Aland\AppData\Local\Temporary Projects\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.pdb
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\bin\Debug\YouTubeDownloaderDesktop.exe.config
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.exe
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.pdb
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\bin\Debug\YouTubeDownloaderDesktop.exe
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\bin\Debug\YouTubeDownloaderDesktop.pdb
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\bin\Debug\libvideo.dll
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.csprojResolveAssemblyReference.cache
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\MainWindow.g.cs
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\App.g.cs
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop_MarkupCompile.cache
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop_MarkupCompile.lref
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\MainWindow.baml
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.g.resources
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.Properties.Resources.resources
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.csproj.GenerateResource.Cache
