@@ -27,8 +27,14 @@ namespace YouTubeDownloaderDesktop
 
         private void startDownload_Click(object sender, RoutedEventArgs e)
         {
-            DownloadManager myManager = new DownloadManager();
-            myManager.SaveVideo(YouTubeURL.Text);
+            Progress progressWindow = new Progress(YouTubeURL.Text, DownloadType.video);
+            progressWindow.Show();
+        }
+
+        private void startDownloadMP3_Click(object sender, RoutedEventArgs e)
+        {
+            Progress progressWindow = new Progress(YouTubeURL.Text, DownloadType.mp3);
+            progressWindow.Show();
         }
     }
 }

@@ -9,7 +9,8 @@
     <Grid>
         <Label x:Name="WelcomeText" Content="Type in the YouTube URL:" HorizontalAlignment="Left" Margin="82,105,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="YouTubeURL" HorizontalAlignment="Left" Height="23" Margin="82,136,0,0" TextWrapping="Wrap" Text="YouTube URL" VerticalAlignment="Top" Width="317"/>
-        <Button x:Name="startDownload" Content="Download!" HorizontalAlignment="Left" Margin="82,182,0,0" VerticalAlignment="Top" Width="75" Click="startDownload_Click"/>
+        <Button x:Name="startDownload" Content="Download Video!" HorizontalAlignment="Left" Margin="82,182,0,0" VerticalAlignment="Top" Width="129" Click="startDownload_Click"/>
+        <Button x:Name="startDownloadMP3" Content="Download MP3!" HorizontalAlignment="Left" Margin="82,229,0,0" VerticalAlignment="Top" Width="129" Click="startDownloadMP3_Click"/>
 
     </Grid>
 </Window>

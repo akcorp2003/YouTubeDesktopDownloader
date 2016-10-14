@@ -1,0 +1,15 @@
+﻿<Window x:Class="YouTubeDownloaderDesktop.Progress"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YouTubeDownloaderDesktop"
+        mc:Ignorable="d"
+        Title="Progress" Height="215.864" Width="278.477" ContentRendered="Window_ContentRendered">
+    <Grid Margin="0,0,-8,-5">
+        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="88,128,0,0" VerticalAlignment="Top" Width="100" IsIndeterminate="True" Orientation="Horizontal">
+        </ProgressBar>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="29,62,0,0" TextWrapping="Wrap" Text="Downloading your video! This may take a while depending on the size of your file." VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
