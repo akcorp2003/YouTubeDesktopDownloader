@@ -29,3 +29,5 @@ C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDe
 C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.csproj.GenerateResource.Cache
 C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\Progress.g.cs
 C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\Progress.baml
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\Settings.g.cs
+C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDownloaderDesktop\YouTubeDownloaderDesktop\obj\Debug\Settings.baml

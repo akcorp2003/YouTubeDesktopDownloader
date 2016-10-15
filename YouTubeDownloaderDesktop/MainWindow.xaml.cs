@@ -36,5 +36,29 @@ namespace YouTubeDownloaderDesktop
             Progress progressWindow = new Progress(YouTubeURL.Text, DownloadType.mp3);
             progressWindow.Show();
         }
+
+        private void YouTubeURL_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            YouTubeURL.Text = "";
+        }
+
+        private void YouTubeURL_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            YouTubeURL.Text = "";
+        }
+
+        private void YouTubeURL_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            YouTubeURL.Text = "";
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem item = sender as MenuItem;
+            if(item.Name == "Settings")
+            {
+
+            }
+        }
     }
 }
