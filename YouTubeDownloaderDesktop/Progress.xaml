@@ -7,9 +7,12 @@
         mc:Ignorable="d"
         Title="Progress" Height="206.864" Width="478.477" ContentRendered="Window_ContentRendered">
     <Grid Margin="0,0,-8,-5">
-        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="166,115,0,0" VerticalAlignment="Top" Width="100" IsIndeterminate="True" Orientation="Horizontal">
-        </ProgressBar>
-        <TextBlock x:Name="updateText" HorizontalAlignment="Left" Margin="24,62,0,0" TextWrapping="Wrap" Text="Downloading your video! This may take a while depending on the size of your file." VerticalAlignment="Top"/>
+        <Border Background="GhostWhite" BorderBrush="BlanchedAlmond" BorderThickness="1" HorizontalAlignment="Left" Height="125" Margin="53,28,0,0" VerticalAlignment="Top" Width="387" />
+
+
+        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="166,115,0,0" VerticalAlignment="Top" Width="100" IsIndeterminate="True" Orientation="Horizontal" />
+        <TextBlock x:Name="updateText" HorizontalAlignment="Left" Margin="81,57,0,0" TextWrapping="Wrap" Text="Downloading your video! This may take a while depending on the size of your file." VerticalAlignment="Top" Width="330"/>
+
 
     </Grid>
 </Window>

@@ -11,4 +11,10 @@ namespace YouTubeDownloaderDesktop
         video,
         mp3
     };
+
+    public static class GlobalVar
+    {
+        public static string saveLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+    }
 }

@@ -44,6 +44,10 @@ namespace YouTubeDownloaderDesktop
             {
                 updateText.Text = "Converted to MP4! Now we're converting it into MP3 format.";
             }
+            else if(e.ProgressPercentage == 99)
+            {
+                updateText.Text = "Finished converting your YouTube video! Enjoy!!";
+            }
         }
 
         private void Saver_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

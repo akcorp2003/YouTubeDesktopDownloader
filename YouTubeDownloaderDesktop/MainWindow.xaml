@@ -5,19 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YouTubeDownloaderDesktop"
         mc:Ignorable="d"
-        Title="GetYouTube" Height="350" Width="525">
+        Title="GetYouTube" Height="457" Width="525" Closing="Window_Closing" Loaded="Window_Loaded">
     <Grid>
-        <Label x:Name="WelcomeText" Content="Type in the YouTube URL:" HorizontalAlignment="Left" Margin="82,105,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="YouTubeURL" HorizontalAlignment="Left" Height="23" Margin="82,136,0,0" TextWrapping="Wrap" Text="YouTube URL" VerticalAlignment="Top" Width="317" MouseLeftButtonUp="YouTubeURL_MouseLeftButtonUp" MouseDoubleClick="YouTubeURL_MouseDoubleClick" MouseLeftButtonDown="YouTubeURL_MouseLeftButtonDown"/>
-        <Button x:Name="startDownload" Content="Download Video!" HorizontalAlignment="Left" Margin="82,182,0,0" VerticalAlignment="Top" Width="129" Click="startDownload_Click"/>
-        <Button x:Name="startDownloadMP3" Content="Download MP3!" HorizontalAlignment="Left" Margin="82,229,0,0" VerticalAlignment="Top" Width="129" Click="startDownloadMP3_Click"/>
+
+        <Border BorderBrush="BlanchedAlmond" Background="GhostWhite" BorderThickness="1" HorizontalAlignment="Left" Height="180" Margin="119,40,0,0" VerticalAlignment="Top" Width="304"/>
+
+        <Label x:Name="WelcomeText" Content="Type in the YouTube URL:" HorizontalAlignment="Left" Margin="184,234,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="YouTubeURL" HorizontalAlignment="Left" Height="23" Margin="98,265,0,0" TextWrapping="Wrap" Text="YouTube URL" VerticalAlignment="Top" Width="316" MouseLeftButtonUp="YouTubeURL_MouseLeftButtonUp" MouseDoubleClick="YouTubeURL_MouseDoubleClick" MouseLeftButtonDown="YouTubeURL_MouseLeftButtonDown" TextChanged="YouTubeURL_TextChanged"/>
+        <Button x:Name="startDownload" Content="Download Video!" HorizontalAlignment="Left" Margin="192,311,0,0" VerticalAlignment="Top" Width="128" Click="startDownload_Click"/>
+        <Button x:Name="startDownloadMP3" Content="Download MP3!" HorizontalAlignment="Left" Margin="192,358,0,0" VerticalAlignment="Top" Width="128" Click="startDownloadMP3_Click"/>
         <Menu x:Name="menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="517">
-            <MenuItem x:Name="File" Header="File">
-                <MenuItem x:Name="Settings" Header="Settings" Click="MenuItem_Click">
-                    
-                </MenuItem>
+            <MenuItem x:Name="File_Menu" Header="File">
+                <MenuItem x:Name="UserSettings" Header="Settings" Click="MenuItem_Click"/>
             </MenuItem>
         </Menu>
+        <Image x:Name="youtubeThumbnail" HorizontalAlignment="Left" Height="142" Margin="162,59,0,0" VerticalAlignment="Top" Width="217" Loaded="youtubeThumbnail_Loaded" Stretch="UniformToFill"/>
 
     </Grid>
 </Window>
