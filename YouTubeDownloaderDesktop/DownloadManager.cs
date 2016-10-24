@@ -29,8 +29,6 @@ namespace YouTubeDownloaderDesktop
             getMP4(video, saver);
 
             string videoName = getFileName(video.FullName);
-            //string convertToMP3Command = "/C ffmpeg -i " + "\"C:\\Users\\Aland\\Documents\\" + video.FullName + "\"" + " -vn -ab 256k " + "\"C:\\Users\\Aland\\Documents\\" + videoName + ".mp3\"";
-            //string convertToMP3Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -vn -ab 256k " + "\"" +GlobalVar.saveLocation + @"\" + videoName + ".mp3\"";
             string convertToMP3Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -vn -ab " + GlobalVar.saveKBPS + " " + "\"" + GlobalVar.saveLocation + @"\" + videoName + ".mp3\"";
             saver.ReportProgress(75);
             Process ffmpegProcess = Process.Start("CMD.exe", convertToMP3Command);
