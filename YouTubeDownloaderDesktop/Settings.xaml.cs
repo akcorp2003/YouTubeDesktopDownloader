@@ -41,6 +41,25 @@ namespace YouTubeDownloaderDesktop
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             saveDirectory.Text = GlobalVar.saveLocation;
+
+            if(GlobalVar.saveKBPS == "128k")
+            {
+                res128k.IsChecked = true;
+            }
+            else
+            {
+                res256k.IsChecked = true;
+            }
+        }
+
+        private void res128k_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalVar.saveKBPS = "128k";
+        }
+
+        private void res256k_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalVar.saveKBPS = "256k";
         }
     }
 }

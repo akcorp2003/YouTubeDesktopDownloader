@@ -15,6 +15,7 @@ namespace YouTubeDownloaderDesktop
     public static class GlobalVar
     {
         public static string saveLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        public static string saveKBPS = "256k";
 
     }
 }

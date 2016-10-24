@@ -66,13 +66,24 @@ namespace YouTubeDownloaderDesktop
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            using (XmlWriter writer = XmlWriter.Create("UserSettings.xml"))
+            string filename = "UserSettings.xml";
+
+            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            using (StreamWriter sw = new StreamWriter(fs))
+            using (XmlTextWriter writer = new XmlTextWriter(sw))
             {
+                writer.Formatting = Formatting.Indented;
+                writer.Indentation = 4;
+
                 writer.WriteStartDocument();
                 writer.WriteStartElement("GlobalVar");
 
                 writer.WriteStartElement("SaveLocation");
                 writer.WriteElementString("Path", GlobalVar.saveLocation);
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("MP3Resolution");
+                writer.WriteElementString("Resolution", GlobalVar.saveKBPS);
                 writer.WriteEndElement();
 
                 writer.WriteEndElement();
@@ -101,6 +112,14 @@ namespace YouTubeDownloaderDesktop
                                     {
                                         //this will be the actual user specified path
                                         GlobalVar.saveLocation = reader.Value.Trim();
+                                    }
+                                    break;
+                                case "MP3Resolution":
+                                    break;
+                                case "Resolution":
+                                    if (reader.Read())
+                                    {
+                                        GlobalVar.saveKBPS = reader.Value.Trim();
                                     }
                                     break;
                             }
