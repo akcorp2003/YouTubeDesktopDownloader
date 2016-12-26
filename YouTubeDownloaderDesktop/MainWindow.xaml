@@ -6,6 +6,15 @@
         xmlns:local="clr-namespace:YouTubeDownloaderDesktop"
         mc:Ignorable="d"
         Title="GetYouTube" Height="457" Width="525" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Storyboard x:Key="sbShowPanel">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,-356,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard x:Key="sbHidePanel">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,-356,0" DecelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+    </Window.Resources>
+
     <Grid>
 
         <Border BorderBrush="BlanchedAlmond" Background="GhostWhite" BorderThickness="1" HorizontalAlignment="Left" Height="180" Margin="119,40,0,0" VerticalAlignment="Top" Width="304"/>
@@ -20,6 +29,24 @@
             </MenuItem>
         </Menu>
         <Image x:Name="youtubeThumbnail" HorizontalAlignment="Left" Height="142" Margin="162,59,0,0" VerticalAlignment="Top" Width="217" Loaded="youtubeThumbnail_Loaded" Stretch="UniformToFill"/>
+
+        <StackPanel Panel.ZIndex="2" Name="SidePanel" Width="406" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,-356,0">
+            <Grid>
+                <Button x:Name="hidePanel" Width="56" Height="48" Content="Hide" Visibility="Hidden" Click="hidePanel_Click"/>
+                <Button x:Name="showPanel" Width="56" Height="48" Content="Show" Click="showPanel_Click" />
+                
+            </Grid>
+            <Border BorderBrush="#FFDCE9FF" BorderThickness="1" Width="360" Background="#FFDCE9FF">
+                <ListView x:Name="recentVideos" Margin="183,-1,-1,-9">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" Width="165"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
+            
+        </StackPanel>
 
     </Grid>
 </Window>

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace YouTubeDownloaderDesktop
 {
@@ -158,5 +159,34 @@ namespace YouTubeDownloaderDesktop
                 youtubeThumbnail.Source = thumbnail;
             }
         }
+
+        private void showPanel_Click(object sender, RoutedEventArgs e)
+        {
+            showHideMenu("sbShowPanel", hidePanel, showPanel, SidePanel);
+        }
+
+        private void hidePanel_Click(object sender, RoutedEventArgs e)
+        {
+            showHideMenu("sbHidePanel", hidePanel, showPanel, SidePanel);
+        }
+
+        private void showHideMenu(string storyboard, Button hide, Button show, StackPanel panel)
+        {
+            Storyboard sb = Resources[storyboard] as Storyboard;
+            sb.Begin(panel);
+            
+            if(storyboard.Contains("Show"))
+            {
+                hide.Visibility = Visibility.Visible;
+                show.Visibility = Visibility.Hidden;
+            }
+            else if(storyboard.Contains("Hide"))
+            {
+                hide.Visibility = Visibility.Hidden;
+                show.Visibility = Visibility.Visible;
+            } 
+        }
+
+       
     }
 }
