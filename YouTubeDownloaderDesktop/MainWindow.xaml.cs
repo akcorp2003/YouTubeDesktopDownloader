@@ -87,6 +87,10 @@ namespace YouTubeDownloaderDesktop
                 writer.WriteElementString("Resolution", GlobalVar.saveKBPS);
                 writer.WriteEndElement();
 
+                writer.WriteStartElement("VideoResolution");
+                writer.WriteElementString("Resolution", GlobalVar.saveVideoP);
+                writer.WriteEndElement();
+
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
             }
@@ -98,6 +102,8 @@ namespace YouTubeDownloaderDesktop
             {
                 using (XmlReader reader = XmlReader.Create("UserSettings.xml"))
                 {
+                    bool Mp3NodeFlag = false;
+                    bool VideoNodeFlag = false;
                     while (reader.Read())
                     {
                         if (reader.IsStartElement())
@@ -116,11 +122,25 @@ namespace YouTubeDownloaderDesktop
                                     }
                                     break;
                                 case "MP3Resolution":
+                                    Mp3NodeFlag = true;
+                                    break;
+                                case "VideoResolution":
+                                    VideoNodeFlag = true;
                                     break;
                                 case "Resolution":
                                     if (reader.Read())
                                     {
-                                        GlobalVar.saveKBPS = reader.Value.Trim();
+                                        if(Mp3NodeFlag)
+                                        {
+                                            GlobalVar.saveKBPS = reader.Value.Trim();
+                                            Mp3NodeFlag = false;
+                                        }
+                                        else
+                                        {
+                                            GlobalVar.saveVideoP = reader.Value.Trim();
+                                            VideoNodeFlag = false;
+                                        }
+                                        
                                     }
                                     break;
                             }

@@ -54,19 +54,31 @@ namespace YouTubeDownloaderDesktop
 
             File.WriteAllBytes(GlobalVar.saveLocation + @"\" + video.FullName, video.GetBytes());
 
-
+            string videoFileName = getFileName(video.FullName);
             if (!fileextension.Contains("mp4"))
             {
-                //string videoFileName = video.FullName.Substring(0, video.FullName.LastIndexOf('.'));
-                string videoFileName = getFileName(video.FullName);
                 //convert the video into a mp4
-                //string convertToMP4Command = "/C ffmpeg -i " + "\"C:\\Users\\Aland\\Documents\\" + video.FullName + "\"" + " -c:v libx264 " + "\"C:\\Users\\Aland\\Documents\\" + videoFileName + ".mp4\"";
-                string convertToMP4Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -c:v libx264 " + "\"" + GlobalVar.saveLocation + @"\" + videoFileName + ".mp4\"";
+                string convertToMP4Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -s hd" + GlobalVar.saveVideoP + " -c:v libx264 " + "\"" + GlobalVar.saveLocation + @"\" + videoFileName + ".mp4\"";
                 saver.ReportProgress(50);
                 Process ffmpegProcess = Process.Start("CMD.exe", convertToMP4Command);
-                ffmpegProcess.WaitForExit();
-                
+                ffmpegProcess.WaitForExit();    
             }
+
+            //ffmpeg -i input.mp4 -s hd480 -c:v libx264 -crf 23 -c:a aac -strict -2 output.mp4
+            //convert the video into the desired resolution, skip for 720p as it automatically downloads 720
+            if(GlobalVar.saveVideoP != "720")
+            {
+                string scaleMP4Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -s hd" + GlobalVar.saveVideoP + " -c:v libx264 " + "-crf 23 -c:a aac -strict 2 " + "\"" + GlobalVar.saveLocation + @"\" + videoFileName + "-" + GlobalVar.saveVideoP + "p.mp4\"";
+                saver.ReportProgress(80);
+                Process ffmpegScalingProcess = Process.Start("CMD.exe", scaleMP4Command);
+                ffmpegScalingProcess.WaitForExit();
+
+                if (File.Exists(GlobalVar.saveLocation + @"\" + videoFileName + ".mp4"))
+                {
+                    File.Delete(GlobalVar.saveLocation + @"\" + videoFileName + ".mp4");
+                }
+            }
+            
 
             saver.ReportProgress(99);
         }

@@ -50,6 +50,15 @@ namespace YouTubeDownloaderDesktop
             {
                 res256k.IsChecked = true;
             }
+
+            if(GlobalVar.saveVideoP == "720")
+            {
+                quality720p.IsChecked = true;
+            }
+            else
+            {
+                quality480p.IsChecked = true; 
+            }
         }
 
         private void res128k_Checked(object sender, RoutedEventArgs e)
@@ -60,6 +69,16 @@ namespace YouTubeDownloaderDesktop
         private void res256k_Checked(object sender, RoutedEventArgs e)
         {
             GlobalVar.saveKBPS = "256k";
+        }
+
+        private void quality480p_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalVar.saveVideoP = "480";
+        }
+
+        private void quality720p_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalVar.saveVideoP = "720";
         }
     }
 }

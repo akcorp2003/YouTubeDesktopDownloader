@@ -16,6 +16,6 @@ namespace YouTubeDownloaderDesktop
     {
         public static string saveLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public static string saveKBPS = "256k";
-
+        public static string saveVideoP = "720";
     }
 }
