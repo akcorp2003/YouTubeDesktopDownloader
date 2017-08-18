@@ -64,7 +64,7 @@ namespace YouTubeDownloaderDesktop
                 ffmpegProcess.WaitForExit();    
             }
 
-            //ffmpeg -i input.mp4 -s hd480 -c:v libx264 -crf 23 -c:a aac -strict -2 output.mp4
+            //ffmpeg -i input.mp4 -s hd480 -c:v libx264 -profile:v high -preset medium -b:v 500k -maxrate 500k -c:a aac -b:a 128k -threads 0 output.mp4
             //convert the video into the desired resolution, skip for 720p as it automatically downloads 720
             //helpful site: https://www.virag.si/2012/01/web-video-encoding-tutorial-with-ffmpeg-0-9/
             if (GlobalVar.saveVideoP != "720")
