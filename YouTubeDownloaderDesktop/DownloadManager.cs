@@ -66,9 +66,10 @@ namespace YouTubeDownloaderDesktop
 
             //ffmpeg -i input.mp4 -s hd480 -c:v libx264 -crf 23 -c:a aac -strict -2 output.mp4
             //convert the video into the desired resolution, skip for 720p as it automatically downloads 720
-            if(GlobalVar.saveVideoP != "720")
+            //helpful site: https://www.virag.si/2012/01/web-video-encoding-tutorial-with-ffmpeg-0-9/
+            if (GlobalVar.saveVideoP != "720")
             {
-                string scaleMP4Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -s hd" + GlobalVar.saveVideoP + " -c:v libx264 " + "-crf 23 -c:a aac -strict 2 " + "\"" + GlobalVar.saveLocation + @"\" + videoFileName + "-" + GlobalVar.saveVideoP + "p.mp4\"";
+                string scaleMP4Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -s hd" + GlobalVar.saveVideoP + " -c:v libx264 -profile:v high -preset medium -b:v 500k -maxrate 500k -c:a aac -b:a 128k -threads 0 " + "\"" + GlobalVar.saveLocation + @"\" + videoFileName + "-" + GlobalVar.saveVideoP + "p.mp4\"";
                 saver.ReportProgress(80);
                 Process ffmpegScalingProcess = Process.Start("CMD.exe", scaleMP4Command);
                 ffmpegScalingProcess.WaitForExit();

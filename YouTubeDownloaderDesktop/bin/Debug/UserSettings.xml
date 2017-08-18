@@ -7,6 +7,6 @@
         <Resolution>256k</Resolution>
     </MP3Resolution>
     <VideoResolution>
-        <Resolution>720</Resolution>
+        <Resolution>480</Resolution>
     </VideoResolution>
 </GlobalVar>
