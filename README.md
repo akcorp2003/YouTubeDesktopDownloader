@@ -27,12 +27,14 @@ Are your favourite YouTube downloading websites getting taken down? Use this fre
 ## How Do I Use It? 
 
 1. After you open it, go to *File > Settings* and select a folder you want to save your music/videos in. The application saves your location but be sure to update it when you decide to change download locations!
-2. Copy and paste the YouTube link into the text box with "YouTube URL."
-3. Click your desired output!
-4. During the converting process, command prompt will open up. That's ffmpeg working hard to convert your video! 
+2. You also have the options to select the quality of the MP3 or the video. Frankly, there's not much difference in the MP3 unless if you have special equipment. 
+3. Copy and paste the YouTube link into the text box with "YouTube URL."
+4. Click your desired output!
+5. During the converting process, command prompt will open up. That's ffmpeg working hard to convert your video! 
 
 ## What's Next? ##
 
+- Store the most recent downloaded files
 - Making a sexier UI
 - Exposing more ffmpeg settings
 - Convert to more video formats
