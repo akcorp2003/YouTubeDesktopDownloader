@@ -4,10 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
 using VideoLibrary;
 
 namespace YouTubeDownloaderDesktop
@@ -18,8 +15,7 @@ namespace YouTubeDownloaderDesktop
         {
             YouTube youTube = YouTube.Default;
             var video = youTube.GetVideo(link);
-            getMP4(video, saver);
-
+            getMP4WithCompression(video, saver);
         }
 
         public void SaveMP3(string link, BackgroundWorker saver)
@@ -45,10 +41,9 @@ namespace YouTubeDownloaderDesktop
             }
 
             saver.ReportProgress(99);
-
         }
 
-        private void getMP4(YouTubeVideo video, BackgroundWorker saver)
+        private string getMP4(YouTubeVideo video, BackgroundWorker saver)
         {
             string fileextension = video.FileExtension;
 
@@ -64,12 +59,19 @@ namespace YouTubeDownloaderDesktop
                 ffmpegProcess.WaitForExit();    
             }
 
-            //ffmpeg -i input.mp4 -s hd480 -c:v libx264 -profile:v high -preset medium -b:v 500k -maxrate 500k -c:a aac -b:a 128k -threads 0 output.mp4
+            return videoFileName;
+        }
+
+        private void getMP4WithCompression(YouTubeVideo video, BackgroundWorker saver)
+        {
+            string videoFileName = getMP4(video, saver);
+
+            //ffmpeg -i input.mp4 -c:v libx264 -profile:v high -preset medium -b:v 500k -maxrate 500k -bufsize 1000k -vf scale=-2:480 -c:a aac -b:a 128k -threads 0 output.mp4
             //convert the video into the desired resolution, skip for 720p as it automatically downloads 720
-            //helpful site: https://www.virag.si/2012/01/web-video-encoding-tutorial-with-ffmpeg-0-9/
+            //helpful site: https://www.virag.si/2015/06/encoding-videos-for-youtube-with-ffmpeg/
             if (GlobalVar.saveVideoP != "720")
             {
-                string scaleMP4Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -s hd" + GlobalVar.saveVideoP + " -c:v libx264 -profile:v high -preset medium -b:v 500k -maxrate 500k -c:a aac -b:a 128k -threads 0 " + "\"" + GlobalVar.saveLocation + @"\" + videoFileName + "-" + GlobalVar.saveVideoP + "p.mp4\"";
+                string scaleMP4Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -c:v libx264 -profile:v high -preset medium -b:v 500k -maxrate 500k -bufsize 1000k" + " -vf scale=-2:" + GlobalVar.saveVideoP + " -threads 0 -codec:a aac -b:a 128k -f mp4 " + "\"" + GlobalVar.saveLocation + @"\" + videoFileName + "-" + GlobalVar.saveVideoP + "p.mp4\"";
                 saver.ReportProgress(80);
                 Process ffmpegScalingProcess = Process.Start("CMD.exe", scaleMP4Command);
                 ffmpegScalingProcess.WaitForExit();
@@ -79,9 +81,6 @@ namespace YouTubeDownloaderDesktop
                     File.Delete(GlobalVar.saveLocation + @"\" + videoFileName + ".mp4");
                 }
             }
-            
-
-            saver.ReportProgress(99);
         }
 
         private string getFileName(string fullName)
