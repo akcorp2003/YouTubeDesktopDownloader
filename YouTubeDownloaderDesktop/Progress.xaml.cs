@@ -29,7 +29,7 @@ namespace YouTubeDownloaderDesktop
             m_videoURL = videoURL;
             m_val = val;
             saver.DoWork += Saver_DoWork;
-            saver.RunWorkerCompleted += Saver_RunWorkerCompleted;
+            // saver.RunWorkerCompleted += Saver_RunWorkerCompleted;
             saver.WorkerReportsProgress = true;
             saver.ProgressChanged += Saver_ProgressChanged;
         }
@@ -47,6 +47,8 @@ namespace YouTubeDownloaderDesktop
             else if(e.ProgressPercentage == 99)
             {
                 updateText.Text = "Finished converting your YouTube video! Enjoy!!";
+                progressBar.Visibility = Visibility.Hidden;
+                confirmFinished.Visibility = Visibility.Visible;
             }
         }
 
@@ -69,13 +71,17 @@ namespace YouTubeDownloaderDesktop
             {
                 myManager.SaveMP3(args.VideoURL, saver);
             }
-            //this.Close();
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
             SaverArguments args = new SaverArguments(m_val, m_videoURL);
             saver.RunWorkerAsync(args);
+        }
+
+        private void confirmFinished_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 

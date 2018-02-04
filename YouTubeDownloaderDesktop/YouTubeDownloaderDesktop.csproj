@@ -90,7 +90,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CodeFile1.cs" />
     <Compile Include="DownloadManager.cs" />
     <Compile Include="GlobalConstants.cs" />
     <Compile Include="MainWindow.xaml.cs">
