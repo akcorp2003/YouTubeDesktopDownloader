@@ -7,7 +7,7 @@ Are your favourite YouTube downloading websites getting taken down? Use this fre
 
 ![](http://i.imgur.com/phd48ik.jpg)
 
-![](http://i.imgur.com/EZUL0XR.jpg)
+![](https://i.imgur.com/XSL9WUL.jpg)
 
 ## Requirements ##
 
