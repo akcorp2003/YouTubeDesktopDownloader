@@ -36,7 +36,6 @@ C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDesktopDownl
 C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDesktopDownloader\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.pdb
 C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDesktopDownloader\YouTubeDownloaderDesktop\bin\Debug\YouTubeDownloaderDesktop.exe
 C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDesktopDownloader\YouTubeDownloaderDesktop\bin\Debug\YouTubeDownloaderDesktop.pdb
-C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDesktopDownloader\YouTubeDownloaderDesktop\bin\Debug\libvideo.dll
 C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDesktopDownloader\YouTubeDownloaderDesktop\obj\Debug\YouTubeDownloaderDesktop.csprojResolveAssemblyReference.cache
 C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDesktopDownloader\YouTubeDownloaderDesktop\obj\Debug\MainWindow.g.cs
 C:\Users\Aland\Documents\Visual Studio 2015\Projects\C-Sharp\YouTubeDesktopDownloader\YouTubeDownloaderDesktop\obj\Debug\Progress.g.cs

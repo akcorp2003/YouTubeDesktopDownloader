@@ -36,15 +36,35 @@ namespace YouTubeDownloaderDesktop
 
         private void Saver_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            if(e.ProgressPercentage == 50)
+            if (e.ProgressPercentage == 1)
             {
-                updateText.Text = "Got your video! Now we're converting it into MP4 format.";
+                updateText.Text = "Getting the name of your file...";
             }
-            else if(e.ProgressPercentage == 75)
+            else if (e.ProgressPercentage == 10)
             {
-                updateText.Text = "Converted to MP4! Now we're converting it into MP3 format.";
+                updateText.Text = "Succeesfully gotten the name of your file!";
             }
-            else if(e.ProgressPercentage == 99)
+            else if (e.ProgressPercentage == 11)
+            {
+                updateText.Text = "Determining if mp4 is available...";
+            }
+            else if (e.ProgressPercentage == 19)
+            {
+                updateText.Text = "There is no mp4 available for your video but we will convert it to one! It might take a little extra time.";
+            }
+            else if (e.ProgressPercentage == 20)
+            {
+                updateText.Text = "mp4 is available for your video!";
+            }
+            else if (e.ProgressPercentage == 30)
+            {
+                updateText.Text = "Beginning your download. Please check the window that opens for more updates";
+            }
+            else if (e.ProgressPercentage == 31)
+            {
+                updateText.Text = "Beginning your download and converting it to an mp3";
+            }
+            else if(e.ProgressPercentage == 100)
             {
                 updateText.Text = "Finished converting your YouTube video! Enjoy!!";
                 progressBar.Visibility = Visibility.Hidden;

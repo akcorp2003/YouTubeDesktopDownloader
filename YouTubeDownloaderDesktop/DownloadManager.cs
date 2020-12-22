@@ -5,87 +5,137 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using VideoLibrary;
 
 namespace YouTubeDownloaderDesktop
 {
     public class DownloadManager
     {
+        private string m_filename = "";
         public void SaveVideo(string link, BackgroundWorker saver)
         {
-            YouTube youTube = YouTube.Default;
-            var video = youTube.GetVideo(link);
-            getMP4WithCompression(video, saver);
+            getFileName(link, saver);
+            getMP4(link, saver);
         }
 
         public void SaveMP3(string link, BackgroundWorker saver)
         {
-            YouTube youTube = YouTube.Default;
-            var video = youTube.GetVideo(link);
-            getMP4(video, saver);
-
-            string videoName = getFileName(video.FullName);
-            string convertToMP3Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -vn -ab " + GlobalVar.saveKBPS + " " + "\"" + GlobalVar.saveLocation + @"\" + videoName + ".mp3\"";
-            saver.ReportProgress(75);
-            Process ffmpegProcess = Process.Start("CMD.exe", convertToMP3Command);
-            ffmpegProcess.WaitForExit();
-
-            if(File.Exists(GlobalVar.saveLocation + @"\" + video.FullName))
-            {
-                File.Delete(GlobalVar.saveLocation + @"\" + video.FullName);
-            }
-
-            if(File.Exists(GlobalVar.saveLocation + @"\" + videoName + ".mp4"))
-            {
-                File.Delete(GlobalVar.saveLocation + @"\" + videoName + ".mp4");
-            }
-
-            saver.ReportProgress(99);
+            getFileName(link, saver);
+            getMp3(link, saver);
+            saver.ReportProgress(100);
         }
 
-        private string getMP4(YouTubeVideo video, BackgroundWorker saver)
+        private void getFileName(string url, BackgroundWorker worker)
         {
-            string fileextension = video.FileExtension;
-
-            File.WriteAllBytes(GlobalVar.saveLocation + @"\" + video.FullName, video.GetBytes());
-
-            string videoFileName = getFileName(video.FullName);
-            if (!fileextension.Contains("mp4"))
+            Process proc = new Process
             {
-                //convert the video into a mp4
-                string convertToMP4Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -s hd" + GlobalVar.saveVideoP + " -c:v libx264 " + "\"" + GlobalVar.saveLocation + @"\" + videoFileName + ".mp4\"";
-                saver.ReportProgress(50);
-                Process ffmpegProcess = Process.Start("CMD.exe", convertToMP4Command);
-                ffmpegProcess.WaitForExit();    
-            }
-
-            return videoFileName;
-        }
-
-        private void getMP4WithCompression(YouTubeVideo video, BackgroundWorker saver)
-        {
-            string videoFileName = getMP4(video, saver);
-
-            //ffmpeg -i input.mp4 -c:v libx264 -profile:v high -preset medium -b:v 500k -maxrate 500k -bufsize 1000k -vf scale=-2:480 -c:a aac -b:a 128k -threads 0 output.mp4
-            //convert the video into the desired resolution, skip for 720p as it automatically downloads 720
-            //helpful site: https://www.virag.si/2015/06/encoding-videos-for-youtube-with-ffmpeg/
-            if (GlobalVar.saveVideoP != "720")
-            {
-                string scaleMP4Command = "/C ffmpeg -i " + "\"" + GlobalVar.saveLocation + @"\" + video.FullName + "\"" + " -c:v libx264 -profile:v high -preset medium -b:v 500k -maxrate 500k -bufsize 1000k" + " -vf scale=-2:" + GlobalVar.saveVideoP + " -threads 0 -codec:a aac -b:a 128k -f mp4 " + "\"" + GlobalVar.saveLocation + @"\" + videoFileName + "-" + GlobalVar.saveVideoP + "p.mp4\"";
-                saver.ReportProgress(80);
-                Process ffmpegScalingProcess = Process.Start("CMD.exe", scaleMP4Command);
-                ffmpegScalingProcess.WaitForExit();
-
-                if (File.Exists(GlobalVar.saveLocation + @"\" + videoFileName + ".mp4"))
+                StartInfo = new ProcessStartInfo
                 {
-                    File.Delete(GlobalVar.saveLocation + @"\" + videoFileName + ".mp4");
+                    FileName = "powershell.exe",
+                    Arguments = $"youtube-dl.exe {url} --get-filename",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                }
+            };
+
+            worker.ReportProgress(1);
+            proc.Start();
+            while (!proc.StandardOutput.EndOfStream)
+            {
+                string fullName = proc.StandardOutput.ReadLine();
+                m_filename = fullName.Substring(0, fullName.LastIndexOf('.'));
+            }
+            proc.Close();
+            worker.ReportProgress(10);
+
+        }
+
+        private void getMP4(String url, BackgroundWorker saver)
+        {
+            saver.ReportProgress(30);
+            if (hasMP4(url, saver))
+            {
+                
+                string command = $"youtube-dl.exe {url} -f \"mp4\"";
+                Process powershell = Process.Start("powershell.exe", command);
+                powershell.WaitForExit();
+            }
+            else
+            {
+                // ask ffmpeg to convert the file
+                string command = $"youtube-dl.exe {url} --recode-format \"mp4\"";
+                Process powershell = Process.Start("powershell.exe", command);
+                powershell.WaitForExit();
+            }
+
+            // for some odd reason, running youtube-dl.exe in Powershell causes it to be unable to read
+            // its .conf file even though I use the same string in a separate Powershell console and it works...
+            // string commandFile = $"\"{Directory.GetCurrentDirectory()}\\youtube-dl.conf\"";
+            // string command = $"youtube-dl.exe {url} --config-location {commandFile}";
+            string destination = $"{GlobalVar.saveLocation}\\{m_filename}.mp4";
+            if (File.Exists(destination))
+            {
+                File.Delete(destination);
+            }
+            string source = $"{m_filename}.mp4";
+            File.Move(source, destination);
+
+            saver.ReportProgress(100);
+        }
+
+        private bool hasMP4(String url, BackgroundWorker worker)
+        {
+            bool isMp4 = false;
+            Process proc = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "powershell.exe",
+                    Arguments = $"youtube-dl.exe {url} -F",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                }
+            };
+
+            worker.ReportProgress(11);
+            proc.Start();
+            while (!proc.StandardOutput.EndOfStream && !isMp4)
+            {
+                string line = proc.StandardOutput.ReadLine();
+                if (line.Contains(" mp4 "))
+                {
+                    isMp4 = true;
                 }
             }
+            proc.Close();
+            if (isMp4)
+            {
+                worker.ReportProgress(20);
+            }
+            else
+            {
+                worker.ReportProgress(19);
+            }
+            return isMp4;
         }
 
-        private string getFileName(string fullName)
+        private void getMp3(String url, BackgroundWorker worker)
         {
-            return fullName.Substring(0, fullName.LastIndexOf('.'));
+            worker.ReportProgress(31);
+            string command = $"youtube-dl.exe {url} -x --audio-format \"mp3\"";
+            Process powershell = Process.Start("powershell.exe", command);
+            powershell.WaitForExit();
+
+            string destination = $"{GlobalVar.saveLocation}\\{m_filename}.mp3";
+            if (File.Exists(destination))
+            {
+                File.Delete(destination);
+            }
+            string source = $"{m_filename}.mp3";
+            File.Move(source, destination);
+
+            worker.ReportProgress(100);
         }
 
         //taken from http://codesnippets.fesslersoft.de/get-the-youtube-videoid-from-url/
