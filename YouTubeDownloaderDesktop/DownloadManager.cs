@@ -11,17 +11,16 @@ namespace YouTubeDownloaderDesktop
     public class DownloadManager
     {
         private string m_filename = "";
-        public void SaveVideo(string link, BackgroundWorker saver)
+        public string SaveVideo(string link, BackgroundWorker saver)
         {
             getFileName(link, saver);
-            getMP4(link, saver);
+            return getMP4(link, saver);
         }
 
-        public void SaveMP3(string link, BackgroundWorker saver)
+        public string SaveMP3(string link, BackgroundWorker saver)
         {
             getFileName(link, saver);
-            getMp3(link, saver);
-            saver.ReportProgress(100);
+            return getMp3(link, saver);
         }
 
         private void getFileName(string url, BackgroundWorker worker)
@@ -50,7 +49,7 @@ namespace YouTubeDownloaderDesktop
 
         }
 
-        private void getMP4(String url, BackgroundWorker saver)
+        private string getMP4(String url, BackgroundWorker saver)
         {
             saver.ReportProgress(30);
             if (hasMP4(url, saver))
@@ -81,6 +80,7 @@ namespace YouTubeDownloaderDesktop
             File.Move(source, destination);
 
             saver.ReportProgress(100);
+            return destination;
         }
 
         private bool hasMP4(String url, BackgroundWorker worker)
@@ -120,7 +120,7 @@ namespace YouTubeDownloaderDesktop
             return isMp4;
         }
 
-        private void getMp3(String url, BackgroundWorker worker)
+        private string getMp3(String url, BackgroundWorker worker)
         {
             worker.ReportProgress(31);
             string command = $"youtube-dl.exe {url} -x --audio-format \"mp3\"";
@@ -136,6 +136,8 @@ namespace YouTubeDownloaderDesktop
             File.Move(source, destination);
 
             worker.ReportProgress(100);
+
+            return destination;
         }
 
         //taken from http://codesnippets.fesslersoft.de/get-the-youtube-videoid-from-url/

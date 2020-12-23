@@ -3,10 +3,4 @@
     <SaveLocation>
         <Path>C:\Users\Aland\Documents</Path>
     </SaveLocation>
-    <MP3Resolution>
-        <Resolution>128k</Resolution>
-    </MP3Resolution>
-    <VideoResolution>
-        <Resolution>480</Resolution>
-    </VideoResolution>
 </GlobalVar>

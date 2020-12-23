@@ -8,10 +8,10 @@
         Title="GetYouTube" Height="457" Width="525" Closing="Window_Closing" Loaded="Window_Loaded">
     <Window.Resources>
         <Storyboard x:Key="sbShowPanel">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,-356,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,-360,0" To="0,0,-110,0" DecelerationRatio=".9" Duration="0:0:1" />
         </Storyboard>
         <Storyboard x:Key="sbHidePanel">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,-356,0" DecelerationRatio=".9" Duration="0:0:1" />
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,-183,0" To="0,0,-360,0" DecelerationRatio=".9" Duration="0:0:1" />
         </Storyboard>
     </Window.Resources>
 
@@ -36,11 +36,11 @@
                 <Button x:Name="showPanel" Width="56" Height="48" Content="Show" Click="showPanel_Click" />
                 
             </Grid>
-            <Border BorderBrush="#FFDCE9FF" BorderThickness="1" Width="360" Background="#FFDCE9FF">
-                <ListView x:Name="recentVideos" Margin="183,-1,-1,-9">
+            <Border BorderBrush="#FFDCE9FF" BorderThickness="1" Width="165" Background="#FFDCE9FF">
+                <ListView x:Name="recentVideos" Margin="0,0,-78,0">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Name" Width="165"/>
+                            <GridViewColumn Header="Name" Width="243" DisplayMemberBinding="{Binding Path=Name}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

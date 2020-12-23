@@ -23,15 +23,20 @@ namespace YouTubeDownloaderDesktop
         private string m_videoURL;
         private DownloadType m_val;
         private readonly BackgroundWorker saver = new BackgroundWorker();
+        private string m_filename;
         public Progress(String videoURL, DownloadType val)
         {
             InitializeComponent();
             m_videoURL = videoURL;
             m_val = val;
             saver.DoWork += Saver_DoWork;
-            // saver.RunWorkerCompleted += Saver_RunWorkerCompleted;
             saver.WorkerReportsProgress = true;
             saver.ProgressChanged += Saver_ProgressChanged;
+        }
+
+        public string getDownloadedFile()
+        {
+            return m_filename;
         }
 
         private void Saver_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -85,11 +90,11 @@ namespace YouTubeDownloaderDesktop
             DownloadManager myManager = new DownloadManager();
             if (args.Val == DownloadType.video)
             {
-                myManager.SaveVideo(args.VideoURL, saver);
+                m_filename = myManager.SaveVideo(args.VideoURL, saver);
             }
             else
             {
-                myManager.SaveMP3(args.VideoURL, saver);
+                m_filename = myManager.SaveMP3(args.VideoURL, saver);
             }
         }
 

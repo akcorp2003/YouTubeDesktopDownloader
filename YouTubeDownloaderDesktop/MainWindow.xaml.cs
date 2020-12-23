@@ -32,6 +32,17 @@ namespace YouTubeDownloaderDesktop
         {
             Progress progressWindow = new Progress(YouTubeURL.Text, DownloadType.video);
             progressWindow.Show();
+            progressWindow.Closed += onProgressClose;
+        }
+
+        private void onProgressClose(object sender, EventArgs e)
+        {
+            Progress closedWindow = (Progress)sender;
+            string filename = closedWindow.getDownloadedFile();
+            RecentVideosData data = new RecentVideosData();
+            data.Name = System.IO.Path.GetFileName(filename);
+            data.Pathname = filename;
+            this.recentVideos.Items.Add(data);
         }
 
         private void startDownloadMP3_Click(object sender, RoutedEventArgs e)
@@ -81,14 +92,6 @@ namespace YouTubeDownloaderDesktop
 
                 writer.WriteStartElement("SaveLocation");
                 writer.WriteElementString("Path", GlobalVar.saveLocation);
-                writer.WriteEndElement();
-
-                writer.WriteStartElement("MP3Resolution");
-                writer.WriteElementString("Resolution", GlobalVar.saveKBPS);
-                writer.WriteEndElement();
-
-                writer.WriteStartElement("VideoResolution");
-                writer.WriteElementString("Resolution", GlobalVar.saveVideoP);
                 writer.WriteEndElement();
 
                 writer.WriteEndElement();
@@ -206,7 +209,11 @@ namespace YouTubeDownloaderDesktop
                 show.Visibility = Visibility.Visible;
             } 
         }
+    }
 
-       
+    public class RecentVideosData
+    {
+        public string Name { get; set; }
+        public string Pathname { get; set; }
     }
 }

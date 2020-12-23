@@ -5,32 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YouTubeDownloaderDesktop"
         mc:Ignorable="d"
-        Title="Settings" Height="434.455" Width="328.978" Loaded="Window_Loaded">
+        Title="Settings" Height="257.455" Width="328.978" Loaded="Window_Loaded">
     <Grid Margin="0,0,-8,-21">
-
-
-        <Grid Margin="25,163,230,170">
-
-
-            <RadioButton x:Name="res128k" Content="128 kbps" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="res128k_Checked"/>
-
-
-            <RadioButton x:Name="res256k" Content="256 kbps" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" Checked="res256k_Checked"/>
-
-
-        </Grid>
 
 
         <Label x:Name="label" Content="Save Directory:" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" ToolTip="The directory path you want to save your music and videos in."/>
         <TextBox x:Name="saveDirectory" HorizontalAlignment="Left" Height="23" Margin="10,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201"/>
         <Button x:Name="button" Content="Browse..." HorizontalAlignment="Left" Margin="232,77,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.493,0.55" Click="button_Click"/>
-        <Button x:Name="saveSettings" Content="OK" HorizontalAlignment="Left" Margin="232,348,0,0" VerticalAlignment="Top" Width="75" Click="saveSettings_Click"/>
-        <Label x:Name="label1" Content="mp3 kbps:" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label2" Content="Video Quality:" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top"/>
-        <Grid HorizontalAlignment="Left" Height="100" Margin="10,251,0,0" VerticalAlignment="Top" Width="100">
-            <RadioButton x:Name="quality480p" Content="480p" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.32,0" Width="90" Checked="quality480p_Checked"/>
-            <RadioButton x:Name="quality720p" Content="720p" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" Width="90" Checked="quality720p_Checked"/>
-        </Grid>
+        <Button x:Name="saveSettings" Content="OK" HorizontalAlignment="Left" Margin="232,185,0,0" VerticalAlignment="Top" Width="75" Click="saveSettings_Click"/>
 
 
     </Grid>
