@@ -116,7 +116,7 @@ namespace YouTubeDownloaderDesktop
                    .ToArray();
             try
             {
-                FileInfo downloadedFile = files[2];
+                FileInfo downloadedFile = files[0];
                 string destination = $"{GlobalVar.saveLocation}\\{downloadedFile.Name}";
                 File.Move(downloadedFile.FullName, destination);
 
