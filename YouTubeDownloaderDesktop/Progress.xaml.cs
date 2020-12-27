@@ -41,11 +41,7 @@ namespace YouTubeDownloaderDesktop
 
         private void Saver_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            if (e.ProgressPercentage == 1)
-            {
-                updateText.Text = "Getting the name of your file...";
-            }
-            else if (e.ProgressPercentage == 10)
+            if (e.ProgressPercentage == 10)
             {
                 updateText.Text = "Succeesfully gotten the name of your file!";
             }
@@ -69,6 +65,12 @@ namespace YouTubeDownloaderDesktop
             {
                 updateText.Text = "Beginning your download and converting it to an mp3";
             }
+            else if (e.ProgressPercentage == 99)
+            {
+                updateText.Text = @"We're sorry. Something went wrong. Please try again.";
+                progressBar.Visibility = Visibility.Hidden;
+                confirmFinished.Visibility = Visibility.Visible;
+            }
             else if(e.ProgressPercentage == 100)
             {
                 updateText.Text = "Finished converting your YouTube video! Enjoy!!";
@@ -87,14 +89,14 @@ namespace YouTubeDownloaderDesktop
         {
             SaverArguments args = e.Argument as SaverArguments;
 
-            DownloadManager myManager = new DownloadManager();
+            DownloadManager myManager = new DownloadManager(args.VideoURL, saver);
             if (args.Val == DownloadType.video)
             {
-                m_filename = myManager.SaveVideo(args.VideoURL, saver);
+                m_filename = myManager.SaveVideo();
             }
             else
             {
-                m_filename = myManager.SaveMP3(args.VideoURL, saver);
+                m_filename = myManager.SaveMP3();
             }
         }
 

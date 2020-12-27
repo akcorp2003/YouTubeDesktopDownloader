@@ -4,65 +4,47 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace YouTubeDownloaderDesktop
 {
     public class DownloadManager
     {
-        private string m_filename = "";
-        public string SaveVideo(string link, BackgroundWorker saver)
+        private BackgroundWorker worker;
+        private string link;
+
+        public DownloadManager(string url, BackgroundWorker downloadWorker)
         {
-            getFileName(link, saver);
-            return getMP4(link, saver);
+            link = url;
+            worker = downloadWorker;
         }
 
-        public string SaveMP3(string link, BackgroundWorker saver)
+        public string SaveVideo()
         {
-            getFileName(link, saver);
-            return getMp3(link, saver);
+            return getMP4();
         }
 
-        private void getFileName(string url, BackgroundWorker worker)
+        public string SaveMP3()
         {
-            Process proc = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "powershell.exe",
-                    Arguments = $"youtube-dl.exe {url} --get-filename",
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true
-                }
-            };
-
-            worker.ReportProgress(1);
-            proc.Start();
-            while (!proc.StandardOutput.EndOfStream)
-            {
-                string fullName = proc.StandardOutput.ReadLine();
-                m_filename = fullName.Substring(0, fullName.LastIndexOf('.'));
-            }
-            proc.Close();
-            worker.ReportProgress(10);
-
+            return getMp3();
         }
 
-        private string getMP4(String url, BackgroundWorker saver)
+        private string getMP4()
         {
-            saver.ReportProgress(30);
-            if (hasMP4(url, saver))
+            worker.ReportProgress(30);
+            if (hasMP4())
             {
                 
-                string command = $"youtube-dl.exe {url} -f \"mp4\"";
+                string command = $"youtube-dl.exe {link} -f \"mp4\"";
                 Process powershell = Process.Start("powershell.exe", command);
                 powershell.WaitForExit();
             }
             else
             {
                 // ask ffmpeg to convert the file
-                string command = $"youtube-dl.exe {url} --recode-format \"mp4\"";
+                string command = $"youtube-dl.exe {link} --recode-format \"mp4\"";
                 Process powershell = Process.Start("powershell.exe", command);
                 powershell.WaitForExit();
             }
@@ -71,19 +53,21 @@ namespace YouTubeDownloaderDesktop
             // its .conf file even though I use the same string in a separate Powershell console and it works...
             // string commandFile = $"\"{Directory.GetCurrentDirectory()}\\youtube-dl.conf\"";
             // string command = $"youtube-dl.exe {url} --config-location {commandFile}";
-            string destination = $"{GlobalVar.saveLocation}\\{m_filename}.mp4";
-            if (File.Exists(destination))
-            {
-                File.Delete(destination);
-            }
-            string source = $"{m_filename}.mp4";
-            File.Move(source, destination);
+            string destination = moveDownloadedFile(".mp4");
 
-            saver.ReportProgress(100);
+            if (destination.Length == 0)
+            {
+                worker.ReportProgress(99);
+            }
+            else
+            {
+                worker.ReportProgress(100);
+            }
+
             return destination;
         }
 
-        private bool hasMP4(String url, BackgroundWorker worker)
+        private bool hasMP4()
         {
             bool isMp4 = false;
             Process proc = new Process
@@ -91,7 +75,7 @@ namespace YouTubeDownloaderDesktop
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "powershell.exe",
-                    Arguments = $"youtube-dl.exe {url} -F",
+                    Arguments = $"youtube-dl.exe {link} -F",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     CreateNoWindow = true
@@ -109,6 +93,7 @@ namespace YouTubeDownloaderDesktop
                 }
             }
             proc.Close();
+
             if (isMp4)
             {
                 worker.ReportProgress(20);
@@ -120,22 +105,51 @@ namespace YouTubeDownloaderDesktop
             return isMp4;
         }
 
-        private string getMp3(String url, BackgroundWorker worker)
+        private string moveDownloadedFile(string fileType)
+        {
+            DirectoryInfo currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
+            // find the most recently created MP3 file
+            FileInfo[] files = currentDirectory
+                   .GetFiles()
+                   .OrderByDescending(f => f.CreationTime)
+                   .Where(f => f.Extension == fileType)
+                   .ToArray();
+            try
+            {
+                FileInfo downloadedFile = files[2];
+                string destination = $"{GlobalVar.saveLocation}\\{downloadedFile.Name}";
+                File.Move(downloadedFile.FullName, destination);
+
+                return destination;
+            }
+            catch (Exception e)
+            {
+                string message = $"An error occured: {e.Message}";
+                MessageBox.Show(message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "";
+            }
+            
+        }
+
+        private string getMp3()
         {
             worker.ReportProgress(31);
-            string command = $"youtube-dl.exe {url} -x --audio-format \"mp3\"";
+            string command = $"youtube-dl.exe {link} -x --audio-format \"mp3\"";
             Process powershell = Process.Start("powershell.exe", command);
             powershell.WaitForExit();
 
-            string destination = $"{GlobalVar.saveLocation}\\{m_filename}.mp3";
-            if (File.Exists(destination))
-            {
-                File.Delete(destination);
-            }
-            string source = $"{m_filename}.mp3";
-            File.Move(source, destination);
+            string destination = moveDownloadedFile(".mp3");
 
-            worker.ReportProgress(100);
+            if (destination.Length == 0)
+            {
+                worker.ReportProgress(99);
+            }
+            else
+            {
+                worker.ReportProgress(100);
+            }
+
+            powershell.Close();
 
             return destination;
         }
