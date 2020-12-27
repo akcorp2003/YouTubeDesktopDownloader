@@ -3,38 +3,39 @@ Are your favourite YouTube downloading websites getting taken down? Use this fre
 
 ## Screenshots ##
 
-![](http://i.imgur.com/sRFnRJg.jpg)
+![](https://i.imgur.com/dX6A7SG.png)
 
-![](http://i.imgur.com/phd48ik.jpg)
+![](https://i.imgur.com/dBvjW6V.png)
 
-![](https://i.imgur.com/XSL9WUL.jpg)
+![](https://i.imgur.com/I8Kyojc.png)
+
+![](https://i.imgur.com/glARU6h.png)
 
 ## Requirements ##
 
-
-
 - .NET Framework 4.5+
 - Windows 7 or higher
-- ffmpeg 3.1.4 Windows static build (Get it [here](https://ffmpeg.zeranoe.com/builds/).)
+- youtube-dl (Get it [here](https://yt-dl.org/latest/youtube-dl.exe))
+- ffmpeg 4.3.1 Windows essentials build (Get it [here](https://www.gyan.dev/ffmpeg/builds/).)
 
 ## How Do I Get Started? ##
 
-1. Download the .dll and .exe files in the releases. Make sure to keep them in one folder!
-2. Make sure you have the latest .NET Framework installed.
+1. Download the .exe file in the releases folder. Place it somewhere in your computer.
+2. Make sure you have the latest v4 of .NET Framework installed. (Compatibility with .NET 5.0 is uncertain)
 3. Configure your firewall to allow this program to access the internet. 
 4. Download ffmpeg. Follow [this](http://www.wikihow.com/Install-FFmpeg-on-Windows) amazing tutorial on how to set it up.
+5. Download youtube-dl. Follow [their guide](https://github.com/ytdl-org/youtube-dl) on GitHub.
+6. Make sure you have ffmpeg and youtube-dl defined in your PATH on Windows. Check [here](https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)) for instructions on adding a PATH variable in Windows.
 
 ## How Do I Use It? 
 
 1. After you open it, go to *File > Settings* and select a folder you want to save your music/videos in. The application saves your location but be sure to update it when you decide to change download locations!
-2. You also have the options to select the quality of the MP3 or the video. Frankly, there's not much difference in the MP3 unless if you have special equipment. 
-3. Copy and paste the YouTube link into the text box with "YouTube URL."
-4. Click your desired output!
-5. During the converting process, command prompt will open up. That's ffmpeg working hard to convert your video! 
+2. Copy and paste the YouTube link into the text box with "YouTube URL."
+3. Click your desired output!
+4. During the converting process, Powershell will open up. That's youtube-dl converting your video to either a video or a MP3!
 
 ## What's Next? ##
 
 - Store the most recent downloaded files
 - Making a sexier UI
-- Exposing more ffmpeg settings
-- Convert to more video formats
+- Exposing more youtube-dl options
