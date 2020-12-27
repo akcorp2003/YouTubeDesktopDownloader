@@ -20,7 +20,7 @@ Are your favourite YouTube downloading websites getting taken down? Use this fre
 
 ## How Do I Get Started? ##
 
-1. Download the .exe file in the releases folder. Place it somewhere in your computer.
+1. Download the .exe file in the [latest release assets folder](https://github.com/akcorp2003/YouTubeDesktopDownloader/releases/download/v2.0/YouTubeDownloaderDesktop.exe). Place it somewhere in your computer.
 2. Make sure you have the latest v4 of .NET Framework installed. (Compatibility with .NET 5.0 is uncertain)
 3. Configure your firewall to allow this program to access the internet. 
 4. Download ffmpeg. Follow [this](http://www.wikihow.com/Install-FFmpeg-on-Windows) amazing tutorial on how to set it up.
